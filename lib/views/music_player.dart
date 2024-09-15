@@ -50,7 +50,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
       if (image != null) {
         music.songImage = image;
         final tempSongColor = await getImagePalette(NetworkImage(image));
-        if (tempSongColor != null) {
+        if (tempSongColor != null){
           music.songColor = tempSongColor;
         }
       }

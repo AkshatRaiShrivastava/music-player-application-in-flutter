@@ -6,7 +6,6 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:music_player_application/models/lyrics.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import '';
 import '../../models/music.dart';
 
 class LyricsPage extends StatefulWidget {
@@ -22,13 +21,13 @@ class _LyricsPageState extends State<LyricsPage> {
   List<Lyrics>? lyrics;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController =
-      ScrollOffsetController();
+  ScrollOffsetController();
   final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
+  ItemPositionsListener.create();
   final ScrollOffsetListener scrollOffsetListener =
-      ScrollOffsetListener.create();
+  ScrollOffsetListener.create();
 
-  StreamSubscription? streamSubscription;
+  StreamSubscription? streamSubscription ;
   @override
   void initState() {
     streamSubscription = widget.player.onPositionChanged.listen((duration) {
@@ -40,7 +39,7 @@ class _LyricsPageState extends State<LyricsPage> {
         for (int index = 0; index < lyrics!.length; index++) {
           if (index > 4 && lyrics![index].timeStamp.isAfter(dt)) {
             itemScrollController.scrollTo(
-                index: index - 2, duration: const Duration(milliseconds: 600));
+                index: index-3, duration: const Duration(milliseconds: 800));
             break;
           }
         }
@@ -102,10 +101,10 @@ class _LyricsPageState extends State<LyricsPage> {
                             ),
                           );
                         },
-                        itemScrollController: itemScrollController,
-                        scrollOffsetController: scrollOffsetController,
-                        itemPositionsListener: itemPositionsListener,
-                        scrollOffsetListener: scrollOffsetListener,
+                        // itemScrollController: itemScrollController,
+                        // scrollOffsetController: scrollOffsetController,
+                        // itemPositionsListener: itemPositionsListener,
+                        // scrollOffsetListener: scrollOffsetListener,
                       );
                     }),
               ),
