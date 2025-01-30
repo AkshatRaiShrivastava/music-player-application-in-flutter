@@ -42,6 +42,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     final credentials =
         SpotifyApiCredentials(CustomStrings.clientId, CustomStrings.secret);
     final spotify = SpotifyApi(credentials);
+    spotify.tracks.get(music.trackId!).asStream();
     spotify.tracks.get(music!.trackId.toString()).then((track) async {
       music.songName = track.name;
       music.artistImage = track.artists?.first.images?.first.url;
@@ -50,7 +51,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
       if (image != null) {
         music.songImage = image;
         final tempSongColor = await getImagePalette(NetworkImage(image));
-        if (tempSongColor != null){
+        if (tempSongColor != null) {
           music.songColor = tempSongColor;
         }
       }
@@ -194,7 +195,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
                               progress: data.data ?? const Duration(seconds: 0),
                               timeLabelTextStyle:
                                   const TextStyle(color: Colors.white),
-                              total: music.duration ?? const Duration(minutes: 4),
+                              total:
+                                  music.duration ?? const Duration(minutes: 4),
                               bufferedBarColor: Colors.white38,
                               baseBarColor: Colors.white10,
                               thumbColor: Colors.white,
